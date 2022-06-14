@@ -16,7 +16,7 @@ public:
     Stopwatch();
 
     // Queries whether the stopwatch is currently running (.Start was called).
-    bool isRunning();
+    bool IsRunning();
 
     // Initiates an interval of the stopwatch
     bool Start();
@@ -55,7 +55,7 @@ inline Stopwatch::Stopwatch()
     m_stopPoints.reserve(10);
 }
 
-inline bool Stopwatch::isRunning() { return m_isRunning; }
+inline bool Stopwatch::IsRunning() { return m_isRunning; }
 
 inline bool Stopwatch::Start()
 {
