@@ -31,7 +31,7 @@ public:
     double TotalElapsed();
 
     // Erases all intervals.
-    void reset();
+    void Reset();
 
 private:
     // Type aliases to make accessing nested type easier
@@ -104,7 +104,7 @@ inline double Stopwatch::TotalElapsed()
     return total;
 }
 
-inline void Stopwatch::reset()
+inline void Stopwatch::Reset()
 {
     m_intervals = 0;
     m_isRunning = false;
