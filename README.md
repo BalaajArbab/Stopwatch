@@ -11,5 +11,6 @@ The class is implemented entirely in the header file.
 | Start | Initiates an interval of the stopwatch |
 | Stop | Stops the stopwatch, creating a closed interval from the start point.  |
 | Elapsed | Returns time in seconds of currently running interval (After starting the stopwatch, without stopping it.)  |
-| TotalElapsed | Returns time in seconds of all intervals + the currently running interval is stopwatch is running. |
+| LastElapsed | Returns time in seconds of previous completed interval. |
+| TotalElapsed | Returns time in seconds of all intervals + the currently running interval if stopwatch is running. |
 | Reset | Erases all intervals. |
