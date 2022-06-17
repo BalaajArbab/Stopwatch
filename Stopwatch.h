@@ -6,7 +6,7 @@
 
 #include <chrono>
 #include <vector>
-#include <cstddef>
+#include <cstdint>
 
 class Stopwatch
 {
@@ -31,7 +31,7 @@ public:
     double LastElapsed();
 
     // Returns the elapsed time (in seconds) of the specified interval (index of intervals starts at 0).
-    double GetIntervalElapsed(std::32_t intervalIndex)
+    double GetIntervalElapsed(std::int32_t intervalIndex);
 
     // Returns elapsed time (in seconds) of all intervals + the currently running interval if stopwatch is running.
     double TotalElapsed();
@@ -103,7 +103,7 @@ inline double Stopwatch::LastElapsed()
     return std::chrono::duration_cast<second_type>(m_stopPoints[m_intervals - 1] - m_startPoints[m_intervals - 1]).count();
 }
 
-inline double GetIntervalElapsed(std::32_t intervalIndex)
+inline double Stopwatch::GetIntervalElapsed(std::int32_t intervalIndex)
 {
     if (m_intervals < 1 || intervalIndex >= m_intervals) return 0.0; // TODO throw exception for negative index
 
@@ -114,7 +114,7 @@ inline double Stopwatch::TotalElapsed()
 {
     double total{ 0.0 };
 
-    for (int i{ }; i < m_intervals; ++i)
+    for (std::int32_t i{ }; i < m_intervals; ++i)
     {
         total += std::chrono::duration_cast<second_type>(m_stopPoints[i] - m_startPoints[i]).count();
     }
