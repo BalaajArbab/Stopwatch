@@ -24,13 +24,16 @@ public:
     // Stops the stopwatch, creating a closed interval from the start point.
     bool Stop();
 
-    // Returns time in seconds of currently running interval (After starting the stopwatch, without stopping it.)
+    // Returns elapsed time (in seconds) of currently running interval (After starting the stopwatch, without stopping it.)
     double Elapsed();
 
-    // Returns time in seconds of previous completed interval.
+    // Returns elapsed time (in seconds) of previous completed interval.
     double LastElapsed();
 
-    // Returns time in seconds of all intervals + the currently running interval if stopwatch is running.
+    // Returns the elapsed time (in seconds) of the specified interval (index of intervals starts at 0).
+    double GetIntervalElapsed(std::32_t intervalIndex)
+
+    // Returns elapsed time (in seconds) of all intervals + the currently running interval if stopwatch is running.
     double TotalElapsed();
 
     // Erases all intervals.
@@ -95,9 +98,16 @@ inline double Stopwatch::Elapsed()
 
 inline double Stopwatch::LastElapsed()
 {
-    if (m_intervals == 0) return 0;
+    if (m_intervals == 0) return 0.0;
 
     return std::chrono::duration_cast<second_type>(m_stopPoints[m_intervals - 1] - m_startPoints[m_intervals - 1]).count();
+}
+
+inline double GetIntervalElapsed(std::32_t intervalIndex)
+{
+    if (m_intervals < 1 || intervalIndex >= m_intervals) return 0.0; // TODO throw exception for negative index
+
+    return std::chrono::duration_cast<second_type>(m_stopPoints[intervalIndex] - m_startPoints[intervalIndex]).count();
 }
 
 inline double Stopwatch::TotalElapsed()
